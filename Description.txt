@@ -249,7 +249,7 @@ MasVnrType: Masonry veneer type
 
 MasVnrArea: Masonry veneer area in square feet
 
-ExterQual: Evaluates the quality of the material on the exterior
+ExterQual: Evaluates the quality of the material on the exterior *
 
        Ex	Excellent
        Gd	Good
@@ -257,7 +257,7 @@ ExterQual: Evaluates the quality of the material on the exterior
        Fa	Fair
        Po	Poor
 
-ExterCond: Evaluates the present condition of the material on the exterior
+ExterCond: Evaluates the present condition of the material on the exterior *
 
        Ex	Excellent
        Gd	Good
@@ -274,7 +274,7 @@ Foundation: Type of foundation
        Stone	Stone
        Wood	Wood
 
-BsmtQual: Evaluates the height of the basement
+BsmtQual: Evaluates the height of the basement *
 
        Ex	Excellent (100+ inches)
        Gd	Good (90-99 inches)
@@ -283,7 +283,7 @@ BsmtQual: Evaluates the height of the basement
        Po	Poor (<70 inches
        NA	No Basement
 
-BsmtCond: Evaluates the general condition of the basement
+BsmtCond: Evaluates the general condition of the basement *
 
        Ex	Excellent
        Gd	Good
@@ -292,7 +292,7 @@ BsmtCond: Evaluates the general condition of the basement
        Po	Poor - Severe cracking, settling, or wetness
        NA	No Basement
 
-BsmtExposure: Refers to walkout or garden level walls
+BsmtExposure: Refers to walkout or garden level walls *
 
        Gd	Good Exposure
        Av	Average Exposure (split levels or foyers typically score average or above)
@@ -300,7 +300,7 @@ BsmtExposure: Refers to walkout or garden level walls
        No	No Exposure
        NA	No Basement
 
-BsmtFinType1: Rating of basement finished area
+BsmtFinType1: Rating of basement finished area *
 
        GLQ	Good Living Quarters
        ALQ	Average Living Quarters
@@ -312,7 +312,7 @@ BsmtFinType1: Rating of basement finished area
 
 BsmtFinSF1: Type 1 finished square feet
 
-BsmtFinType2: Rating of basement finished area (if multiple types)
+BsmtFinType2: Rating of basement finished area (if multiple types) *
 
        GLQ	Good Living Quarters
        ALQ	Average Living Quarters
@@ -337,7 +337,7 @@ Heating: Type of heating
        OthW	Hot water or steam heat other than gas
        Wall	Wall furnace
 
-HeatingQC: Heating quality and condition
+HeatingQC: Heating quality and condition *
 
        Ex	Excellent
        Gd	Good
@@ -378,7 +378,7 @@ Bedroom: Bedrooms above grade (does NOT include basement bedrooms)
 
 Kitchen: Kitchens above grade
 
-KitchenQual: Kitchen quality
+KitchenQual: Kitchen quality *
 
        Ex	Excellent
        Gd	Good
@@ -401,7 +401,7 @@ Functional: Home functionality (Assume typical unless deductions are warranted)
 
 Fireplaces: Number of fireplaces
 
-FireplaceQu: Fireplace quality
+FireplaceQu: Fireplace quality *
 
        Ex	Excellent - Exceptional Masonry Fireplace
        Gd	Good - Masonry Fireplace in main level
@@ -422,7 +422,7 @@ GarageType: Garage location
 
 GarageYrBlt: Year garage was built
 
-GarageFinish: Interior finish of the garage
+GarageFinish: Interior finish of the garage *
 
        Fin	Finished
        RFn	Rough Finished
@@ -433,7 +433,7 @@ GarageCars: Size of garage in car capacity
 
 GarageArea: Size of garage in square feet
 
-GarageQual: Garage quality
+GarageQual: Garage quality *
 
        Ex	Excellent
        Gd	Good
@@ -442,7 +442,7 @@ GarageQual: Garage quality
        Po	Poor
        NA	No Garage
 
-GarageCond: Garage condition
+GarageCond: Garage condition *
 
        Ex	Excellent
        Gd	Good
@@ -469,7 +469,7 @@ ScreenPorch: Screen porch area in square feet
 
 PoolArea: Pool area in square feet
 
-PoolQC: Pool quality
+PoolQC: Pool quality *
 
        Ex	Excellent
        Gd	Good
@@ -477,7 +477,7 @@ PoolQC: Pool quality
        Fa	Fair
        NA	No Pool
 
-Fence: Fence quality
+Fence: Fence quality *
 
        GdPrv	Good Privacy
        MnPrv	Minimum Privacy
