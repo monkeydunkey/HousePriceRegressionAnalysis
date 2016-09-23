@@ -14,7 +14,7 @@ all_data = pd.concat((train.loc[:, 'MSSubClass':'SaleCondition'],
 
 # log transform the target:
 train["SalePrice"] = np.log1p(train["SalePrice"])
-
+'''
 dataSets = [train, all_data]
 for dataset in dataSets:
     # All the categorical columns that have Excellent, Good, Average/Typical,Fair,
@@ -51,7 +51,7 @@ for dataset in dataSets:
                                         150:'1-1/2 STORY PUD - ALL AGES', 160:'2-STORY PUD - 1946 & NEWER',
                                         180:'PUD - MULTILEVEL - INCL SPLIT LEV/FOYER', 190:'2 FAMILY CONVERSION - ALL STYLES AND AGES'})
 
-
+'''
 # log transform skewed numeric features:
 numeric_feats = all_data.dtypes[all_data.dtypes != "object"].index
 
@@ -63,11 +63,11 @@ skewed_feats = skewed_feats.index
 all_data[skewed_feats] = np.log1p(all_data[skewed_feats])
 
 # For left skewed data
-skewed_feats = train[numeric_feats].apply(lambda x: skew(x.dropna()))
-skewed_feats = skewed_feats[skewed_feats < -0.8]
-skewed_feats = skewed_feats.index
+skewed_feats_left = train[numeric_feats].apply(lambda x: skew(x.dropna()))
+skewed_feats_left = skewed_feats_left[skewed_featsleft < -0.8]
+skewed_feats_left = skewed_feats_left.index
 
-all_data[skewed_feats] = np.square(all_data[skewed_feats])
+all_data[skewed_feats_left] = np.square(all_data[skewed_feats_left])
 
 
 all_data = pd.get_dummies(all_data)
@@ -81,16 +81,27 @@ y = train.SalePrice
 def rmse_cv(model, X):
     rmse = np.sqrt(-cross_val_score(model, X, y,
                    scoring="mean_squared_error", cv=5))
-    print rmse
+    return rmse
 
-
+print rmse_cv(LassoCV(alphas=[1, 0.1, 0.001, 0.0005]), X_train)
 model_lasso = LassoCV(alphas=[1, 0.1, 0.001, 0.0005]).fit(X_train, y)
+'''
 coefs = model_lasso.coef_
+rmseScores = []
+selected = SelectFromModel(model_lasso, threshold=coefs[0], prefit=True)
+temp = rmse_cv(LassoCV(alphas=[1, 0.1, 0.001, 0.0005]), selected.transform(X_train)).tolist()
+rmse_min = (sum(temp)/len(temp))
 for c in coefs:
     sfm = SelectFromModel(model_lasso, threshold=c, prefit=True)
-    print "For Coeff:", c, "The RMSE are", rmse_cv(model_lasso, sfm.transform(X_train))
+    temp = rmse_cv(LassoCV(alphas=[1, 0.1, 0.001, 0.0005]), sfm.transform(X_train)).tolist()
+    rmseScore_avg = max(temp)
+    if rmseScore_avg < rmse_min:
+        rmse_min = rmseScore_avg
+        selected = sfm
+print rmse_min
+
+model_lasso = LassoCV(alphas=[1, 0.1, 0.001, 0.0005]).fit(selected.transform(X_train), y)
 '''
 preds = np.expm1(model_lasso.predict(X_test))
 solution = pd.DataFrame({"id": test.Id, "SalePrice": preds})
 solution.to_csv("Try2.csv", index=False)
-'''
